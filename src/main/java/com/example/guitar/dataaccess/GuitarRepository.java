@@ -3,14 +3,12 @@ package com.example.guitar.dataaccess;
 import com.example.guitar.models.domain.Guitar;
 import com.example.guitar.models.dto.guitarBrandDto;
 import com.example.guitar.models.maps.guitarDtoBrandMap;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 
 @Component
 public class GuitarRepository implements IGuitarRepository {
-//    private List<Guitar> guitars = seedGuitars();
+
     private Map<Integer, Guitar> guitars = seedGuitars();
 
     private Map<Integer, Guitar> seedGuitars() {
@@ -36,7 +34,7 @@ public class GuitarRepository implements IGuitarRepository {
         guitars.put(maxValueInMap+1, guitar);
         return guitars.get(maxValueInMap+1);
     }
-    //Replaces a guitar with a new object/guitar.
+
     @Override
     public Guitar replaceGuitar(int id, Guitar guitar) {
         guitars.replace(id, guitar);
@@ -73,16 +71,6 @@ public class GuitarRepository implements IGuitarRepository {
         return true;
     }
 
-//    public Map<String, Integer> getGuitarsForEachBrand(){
-//        List<Guitar> guitarList = new ArrayList<Guitar>(guitars.values());
-////        List<String> guitarBrandList = new ArrayList<String>(guitarList.)
-//
-//
-//        for (Map.Entry<Integer, Guitar> entry:guitars.entrySet()) {
-//            Guitar guitar = entry.getValue();
-//        }
-//        return
-//    }
     @Override
     public guitarBrandDto getGuitarsForEachBrand() {
         var guitarBranches = guitarDtoBrandMap.guitarBrandDtoCount(guitars);

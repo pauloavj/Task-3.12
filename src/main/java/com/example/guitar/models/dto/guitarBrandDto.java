@@ -3,7 +3,6 @@ package com.example.guitar.models.dto;
 import java.util.Map;
 
 public class guitarBrandDto {
-
     private Map<String, Integer> guitarsForEachBrand;
 
     public guitarBrandDto(Map<String, Integer> duplicatedBrands) {

@@ -19,18 +19,16 @@ public class GuitarController {
 
     @GetMapping()
     public ResponseEntity<Map<Integer, Guitar>> getAllGuitars(){
+        if(guitarRepository.isGuitarsEmpty())
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(guitarRepository.getAllGuitars(),HttpStatus.OK);
-//        return guitarRepository.getAllGuitars();
     }
 
-    //Get the targeted id.
-    @GetMapping("/{id}") //Same here, the root is always /guitar as above.
+    @GetMapping("/{id}")
     public ResponseEntity<Guitar> getGuitar(@PathVariable int id) {
-        //int convertedId = Integer.parseInt(id); - Is not needed, it reads!
         if(!guitarRepository.guitarExists(id))
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(guitarRepository.getGuitar(id), HttpStatus.OK);
-        //Testing out http status.
     }
 
     @GetMapping("/brands")
@@ -40,16 +38,13 @@ public class GuitarController {
         return new ResponseEntity<>(guitarRepository.getGuitarsForEachBrand(), HttpStatus.OK);
     }
 
-    //Saved in memory, volatile, needs to be saved somewhere!
     @PostMapping
     public ResponseEntity<Guitar> createCreateGuitar(@RequestBody Guitar guitar) {
-//        return guitarRepository.addGuitar(guitar);
         if(guitarRepository.isGuitarValid(guitar))
             return new ResponseEntity<>(guitarRepository.addGuitar(guitar), HttpStatus.CREATED);
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
-    //Put, linked to the replaceGuitar with the body.
     @PutMapping("/{id}")
     public ResponseEntity<Guitar> replaceGuitar(@PathVariable int id, @RequestBody Guitar guitar) {
         if(!guitarRepository.isGuitarValid(guitar))
@@ -78,7 +73,5 @@ public class GuitarController {
         guitarRepository.deleteGuitar(id);
         return new ResponseEntity<>("Guitar with id " + id + " has been removed!", HttpStatus.OK);
     }
-
-
 }
 
