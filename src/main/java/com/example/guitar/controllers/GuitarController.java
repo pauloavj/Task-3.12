@@ -2,7 +2,7 @@ package com.example.guitar.controllers;
 
 import com.example.guitar.dataaccess.IGuitarRepository;
 import com.example.guitar.models.domain.Guitar;
-import com.example.guitar.models.dto.guitarBrandDto;
+import com.example.guitar.models.dto.GuitarBrandDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ public class GuitarController {
     }
 
     @GetMapping("/brands")
-    public ResponseEntity<guitarBrandDto> getGuitarsFromBrand(){
+    public ResponseEntity<GuitarBrandDto> getGuitarsFromBrand(){
         if(guitarRepository.isGuitarsEmpty())
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(guitarRepository.getGuitarsForEachBrand(), HttpStatus.OK);

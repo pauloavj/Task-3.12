@@ -1,6 +1,7 @@
 package com.example.guitar.models.domain;
 
 public class Guitar {
+
     private String brand;
     private String model;
 

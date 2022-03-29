@@ -1,7 +1,7 @@
 package com.example.guitar.dataaccess;
 
 import com.example.guitar.models.domain.Guitar;
-import com.example.guitar.models.dto.guitarBrandDto;
+import com.example.guitar.models.dto.GuitarBrandDto;
 
 import java.util.Map;
 
@@ -14,6 +14,6 @@ public interface IGuitarRepository {
     void deleteGuitar(int id);
     boolean guitarExists(int id);
     boolean isGuitarValid(Guitar guitar);
-    guitarBrandDto getGuitarsForEachBrand();
+    GuitarBrandDto getGuitarsForEachBrand();
     boolean isGuitarsEmpty();
 }

@@ -1,8 +1,8 @@
 package com.example.guitar.dataaccess;
 
 import com.example.guitar.models.domain.Guitar;
-import com.example.guitar.models.dto.guitarBrandDto;
-import com.example.guitar.models.maps.guitarDtoBrandMap;
+import com.example.guitar.models.dto.GuitarBrandDto;
+import com.example.guitar.models.maps.GuitarDtoBrandMap;
 import org.springframework.stereotype.Component;
 import java.util.*;
 
@@ -72,13 +72,11 @@ public class GuitarRepository implements IGuitarRepository {
     }
 
     @Override
-    public guitarBrandDto getGuitarsForEachBrand() {
-        var guitarBranches = guitarDtoBrandMap.guitarBrandDtoCount(guitars);
-        return guitarBranches;
+    public GuitarBrandDto getGuitarsForEachBrand() {
+        return GuitarDtoBrandMap.guitarBrandDtoCount(guitars);
     }
 
     public boolean isGuitarsEmpty(){
         return  guitars.isEmpty();
     }
-
 }
